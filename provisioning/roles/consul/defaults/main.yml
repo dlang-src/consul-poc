@@ -1,0 +1,38 @@
+---
+
+# Set the consul user
+consul_user: consul
+# Set the consul group
+consul_group: consul
+# Set Consul home
+consul_home: /opt/consul
+# Set the install path of consul
+consul_binary_dir: "{{ consul_home }}/bin"
+# Set the data directory for Consul
+consul_data_dir: "{{ consul_home }}/data"
+# Set consul configuration directory
+consul_config_dir: /etc/consul.d
+# Set the Consul configuration file
+consul_config_file: /etc/consul.conf
+# Directory for the Web UI
+consul_ui_dir: "{{ consul_home }}/dist"
+# Consul domain - doesn't have to be related to a real domain
+consul_domain: consul
+# The list of consul servers - used for joining to a cluster
+consul_servers: ['127.0.0.1']
+consul_is_ui: false
+consul_is_server: false
+consul_log_level: "INFO"
+consul_syslog: false
+consul_rejoin_after_leave: true
+consul_leave_on_terminate: false
+consul_bind_address: "0.0.0.0"
+consul_client_address: "127.0.0.1"
+consul_datacenter: "default"
+consul_ui_server_name: "{{ ansible_fqdn }}"
+consul_ui_require_auth: false
+consul_ui_auth_user_file: /etc/htpasswd/consul
+consul_enable_nginx_config: true
+consul_disable_remote_exec: true
+consul_install_dnsmasq: true
+

@@ -1,0 +1,5 @@
+---
+- hosts: consul
+  gather_facts: no
+  roles:
+    - vagrant

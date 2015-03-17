@@ -1,0 +1,72 @@
+---
+- name: "Ensure consul group"
+  group: >
+        name={{ consul_group }} 
+        state=present 
+
+- name: "Ensure consul user"
+  user:  >
+        name={{ consul_user }} 
+        groups={{ consul_group }} 
+        state=present
+
+- name: "Ensure consul data directory"
+  file:  >
+        dest={{ consul_data_dir }} 
+        owner={{ consul_user }} 
+        group={{ consul_group }} 
+        mode=0755 
+        state=directory 
+        recurse=yes
+
+- name: "Ensure consul configuration directory"
+  file:  > 
+        dest={{ consul_config_dir }} 
+        owner={{ consul_user }} 
+        group={{ consul_group }} 
+        mode=0755 
+        state=directory
+
+- name: "Ensure Consul bin"
+  file:  >
+        dest={{ consul_binary_dir }}
+        mode=0755
+        state=directory
+
+- name: "Ensure Consul"
+  copy:  >
+        src=consul 
+        dest={{ consul_binary_dir }}/consul 
+        owner={{ consul_user }} 
+        group={{ consul_group }} 
+        mode=0755
+
+- name: "Ensure Consul configuration"
+  template:  >
+           src=etc/consul.conf.j2 
+           dest=/etc/consul.conf
+           owner=root
+           group=root
+           mode=0744
+
+- name: "Ensure consul service script"
+  template:  >
+           src=etc/init.d/consul.j2
+           dest=/etc/init.d/consul
+           owner=root
+           group=root
+           mode=0755
+
+- name: "Ensure consul profile.d"
+  template:  >
+           src=etc/profile.d/consul.sh.j2
+           dest=/etc/profile.d/consul.sh
+           owner=root
+           group=root
+           mode=0755
+
+- name: "Ensure consul service is enabled"
+  service:  >
+          name=consul
+          state=started
+          enabled=yes

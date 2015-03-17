@@ -1,0 +1,6 @@
+---
+
+consul_servers: ['192.168.100.10','192.168.100.12','192.168.100.14']
+consul_bind_address: "{{ ansible_eth1.ipv4.address }}"
+consul_datacenter: poc
+consul_join_at_start: true

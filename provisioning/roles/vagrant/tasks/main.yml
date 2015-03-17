@@ -1,0 +1,7 @@
+---
+
+- name: "Ensure libselinux-python"
+  yum: name=libselinux-python state=present
+
+- name: "Overwrite Hosts File"
+  copy: src=etc/hosts dest=/etc/hosts owner=root group=root mode=0644

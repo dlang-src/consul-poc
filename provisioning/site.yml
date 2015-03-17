@@ -1,0 +1,6 @@
+---
+
+## Ensure the state of the Vagrant environment if used
+
+- include: vagrant.yml tags=poc,test
+- include: consul.yml 
