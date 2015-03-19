@@ -1,3 +1,4 @@
 ---
 
 consul_is_server: true
+consul_bootstrap: true
